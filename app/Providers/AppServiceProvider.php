@@ -20,8 +20,8 @@ class AppServiceProvider extends ServiceProvider
             'Login'
         ];
         foreach($Services as $service){
-        $interface="app\\Services\\{$service}\\{$service}Interface";
-        $implementation="app\\Services\\{$service}\\{$service}Service";
+        $interface="App\\Services\\{$service}\\{$service}Interface";
+        $implementation="App\\Services\\{$service}\\{$service}Service";
         $this->app->bind($interface,$implementation);
         }
        
@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
             'Login'
         ];
         foreach($repositories as $repository){
-            $interface="app\\Repositories\\{$repository}\\{$repository}Contract";
-            $implemetation="app\\Repositories\\{$repository}\\{$repository}Eloquent";
+            $interface="App\\Repositories\\{$repository}\\{$repository}Contract";
+            $implemetation="App\\Repositories\\{$repository}\\{$repository}Eloquent";
             $this->app->bind($interface,$implemetation);
 
         }

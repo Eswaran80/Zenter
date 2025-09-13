@@ -134,17 +134,21 @@
       <h2>Welcome Back</h2>
       <p>Login to continue with Zenter</p>
 
-      <form action="" method="post">
+      <form action="{{route('login.check')}}" method="post">
         @csrf
         <div class="input-group">
           <i class="ri-mail-line"></i>
-          <input type="email" placeholder="Email" required>
+          <input type="text" name="username" placeholder="Username" required>
         </div>
         <div class="input-group">
           <i class="ri-lock-2-line"></i>
-          <input type="password" placeholder="Password" required>
+          <input type="password" name="password" placeholder="Password" required>
         </div>
-        <button class="btn" type="" onclick="window.location='{{route('dashboard.show')}}'"  >Login</button>
+        @if(session('error'))
+          <p style="color:orangered">{{session('error')}}</p>
+        
+        @endif
+        <button class="btn" type="submit">Login</button>
       </form>
 
       <div class="login-links">

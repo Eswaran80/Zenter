@@ -109,7 +109,7 @@ table tr:hover { background:#f1f1f1; }
         <div class="dropdown" id="profileDropdown">
             <a href="#"><i class="ri-user-line"></i> Profile</a>
             <a href="#"><i class="ri-settings-3-line"></i> Settings</a>
-            <a href="#"><i class="ri-logout-circle-r-line"></i> Logout</a>
+            <a onclick="window.location='{{'/'}}'" ><i class="ri-logout-circle-r-line"></i> Logout</a>
         </div>
     </div>
 </div>

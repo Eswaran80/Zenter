@@ -133,20 +133,32 @@
       <h2>Create Account</h2>
       <p>Join Zenter today and start managing your tasks smarter 🚀</p>
 
-      <form>
+      <form action="{{route('login.store')}}" method="post">
+        @csrf
         <div class="input-group">
           <i class="ri-user-line"></i>
-          <input type="text" placeholder="Username" required>
+          <input type="text" name="username" placeholder="Username" required>
         </div>
         <div class="input-group">
           <i class="ri-mail-line"></i>
-          <input type="email" placeholder="Email" required>
+          <input type="" name="email" placeholder="Email" required>
         </div>
         <div class="input-group">
           <i class="ri-lock-2-line"></i>
-          <input type="password" placeholder="Password" required>
+          <input type="password" name="password" placeholder="Password" required>
         </div>
-        <button class="btn">Sign Up</button>
+      @if (session('error'))
+    <p id="errorMsg" style="color: rgb(235, 110, 0)">{{ session('error') }}</p>
+
+     <script>
+        setTimeout(() => {
+            document.getElementById('errorMsg').style.display = 'none';
+        }, 5000); // 5000ms = 5 seconds
+    </script>
+     @endif
+
+
+        <button class="btn" type="submit">Sign Up</button>
       </form>
 
       <div class="register-links">
