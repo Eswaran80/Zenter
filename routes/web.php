@@ -11,6 +11,10 @@ Route::get('login',[LoginController::class,'loginshow'])->name('login.show');
 
 Route::get('register',[LoginController::class,'registershow'])->name('register.show');
 
+Route::get('dashboard',[LoginController::class,'dashboardshow'])->name('dashboard.show');
+
+
+
 
 
 

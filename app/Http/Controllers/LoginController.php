@@ -12,4 +12,8 @@ class LoginController extends Controller
     public function registershow(){
         return view('register-page');
     }
+    public function dashboardshow(){
+        return view('dashboard');
+    }
+    
 }
