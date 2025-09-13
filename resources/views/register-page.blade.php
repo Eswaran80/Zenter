@@ -143,10 +143,6 @@
           <input type="email" placeholder="Email" required>
         </div>
         <div class="input-group">
-          <i class="ri-smartphone-line"></i>
-          <input type="tel" placeholder="Mobile No." required pattern="[0-9]{10}">
-        </div>
-        <div class="input-group">
           <i class="ri-lock-2-line"></i>
           <input type="password" placeholder="Password" required>
         </div>

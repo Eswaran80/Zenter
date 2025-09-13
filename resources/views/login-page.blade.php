@@ -144,7 +144,7 @@
           <i class="ri-lock-2-line"></i>
           <input type="password" placeholder="Password" required>
         </div>
-        <button class="btn" type="submit">Login</button>
+        <button class="btn" type="" onclick="window.location='{{route('dashboard.show')}}'"  >Login</button>
       </form>
 
       <div class="login-links">
