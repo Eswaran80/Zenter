@@ -17,4 +17,6 @@ class Logincheck extends Authenticatable
         'password',
         'mobile_no'
     ];
+
+   
 }

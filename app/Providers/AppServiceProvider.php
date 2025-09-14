@@ -17,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function BindService(){
         $Services=[
-            'Login'
+            'Login',
+            'User'
         ];
         foreach($Services as $service){
         $interface="App\\Services\\{$service}\\{$service}Interface";
@@ -28,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
     }
     public function BindRepository(){
         $repositories=[
-            'Login'
+            'Login',
+            'User'
         ];
         foreach($repositories as $repository){
             $interface="App\\Repositories\\{$repository}\\{$repository}Contract";
