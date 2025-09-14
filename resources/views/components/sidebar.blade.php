@@ -62,8 +62,8 @@ body { background:#f4f7fd; color:#333; }
 <!-- Sidebar -->
 <div class="sidebar">
     <h2><img src="https://i.imgur.com/6C63FFlogo.png" alt="Logo"> Zenter</h2>
-    <a href="#"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
-    <a href="#"><i class="ri-user-settings-line"></i><span>Users</span></a>
+    <a href="#" onclick="window.location='{{route('dashboard.show')}}'"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
+    <a href="#" onclick="window.location='{{route('users.page')}}'" ><i class="ri-user-settings-line"></i><span>Users</span></a>
     <a href="#"><i class="ri-task-line"></i><span>Tasks</span></a>
     <a href="#"><i class="ri-team-line"></i><span>Team</span></a>
     <a href="#"><i class="ri-bar-chart-line"></i><span>Reports</span></a>
