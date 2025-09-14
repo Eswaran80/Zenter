@@ -97,9 +97,9 @@ table tr:hover { background:#f1f1f1; }
 </style>
 </head>
 <body>
-
+ <x-sidebar/>
 <!-- Top Header -->
-<div class="top-header">
+{{-- <div class="top-header">
     <div class="top-right">
         <div class="notif">
             <i class="ri-notification-line"></i>
@@ -129,7 +129,7 @@ table tr:hover { background:#f1f1f1; }
     <a href="#"><i class="ri-customer-service-2-line"></i><span>Support</span></a>
     <a href="#"><i class="ri-settings-3-line"></i><span>Settings</span></a>
     <a href="#"><i class="ri-logout-circle-r-line"></i><span>Logout</span></a>
-</div>
+</div> --}}
 
 <!-- Main Content -->
 <div class="main-content">
