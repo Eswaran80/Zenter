@@ -79,4 +79,8 @@ class LoginController extends Controller
         }
         return redirect()->route('login.show')->with('error','User does not exist please register first!');
     }
+
+    public function usershow(){
+        return view('users');
+    }
 }
