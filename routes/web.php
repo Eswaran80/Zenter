@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,8 @@ Route::post('login-store',[LoginController::class,'loginstore'])->name('login.st
 Route::post('loginCheck',[LoginController::class,'logincheck'])->name('login.check');
 
 Route::get('users',[LoginController::class,'usershow'])->name('users.page');
+
+Route::post('store',[UserController::class,'store'])->name('user.store');
 
 
 

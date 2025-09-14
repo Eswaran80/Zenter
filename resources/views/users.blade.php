@@ -132,19 +132,20 @@
         <div style="font-weight:800">Add / Edit User</div>
         <button class="ghost" id="closeModal">X</button>
       </div>
-      <form >
+      <form action="{{route('user.store')}}" method="post">
+        @csrf
         <div class="row" style="margin-bottom:10px">
           <div style="flex:1">
             <label for="name">Full name</label>
-            <input id="name" required />
+            <input id="name" name="name" required />
           </div>
           <div style="width:180px">
             <label for="role">Role</label>
-            <select id="role"><option>Member</option><option>Manager</option><option>Admin</option></select>
+            <select id="role" name="role"><option>Member</option><option>Manager</option><option>Admin</option></select>
           </div>
         </div>
         <label for="email">Email</label>
-        <input id="email" type="email" required />
+        <input name="email" id="email" type="email" required />
         <div style="display:flex;justify-content:flex-end;margin-top:12px;gap:8px">
           <button type="button" class="ghost" id="cancel">Cancel</button>
           <button class="btn" type="submit">Save user</button>
