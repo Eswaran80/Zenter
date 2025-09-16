@@ -39,6 +39,30 @@ body { background:#f4f7fd; color:#333; }
 
 /* Responsive */
 @media(max-width:768px) { .main-content { margin-left:0; padding:100px 10px 20px 10px; } .sidebar { width:55px; } .sidebar h2 { display:none; } .sidebar a span { display:none; } .top-header { left:55px; } }
+
+
+
+.sidebar a,
+.sidebar button.logout-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sidebar a:hover,
+.sidebar button.logout-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
 </style>
 </head>
 <body>
@@ -74,7 +98,13 @@ body { background:#f4f7fd; color:#333; }
     <a href="#"><i class="ri-user-settings-line"></i><span>Account</span></a>
     <a href="#"><i class="ri-customer-service-2-line"></i><span>Support</span></a>
     <a href="#"><i class="ri-settings-3-line"></i><span>Settings</span></a>
-    <a href="#"><i class="ri-logout-circle-r-line"></i><span>Logout</span></a>
+    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="logout-link">
+            <i class="ri-logout-circle-r-line"></i><span>Logout</span>
+        </button>
+    </form>
+</a>
 </div>
 
 

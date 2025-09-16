@@ -162,7 +162,7 @@
       </form>
 
       <div class="register-links">
-        <p>Already have an account? <a class="btn1" onclick="window.location='{{route('login.show')}}'">Login</a></p>
+        <p>Already have an account? <a class="btn1" onclick="window.location='{{route('login')}}'">Login</a></p>
       </div>
     </div>
   </div>

@@ -33,6 +33,7 @@ class LoginEloquent implements LoginContract{
         {
             // $data['password']=Hash::make($data['password']);
             $logincheck=Auth::attempt(['username'=>$data['username'],'password'=>$data['password']]);
+            
             return $logincheck;
             
         }

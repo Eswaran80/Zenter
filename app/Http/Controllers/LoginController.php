@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Login\LoginInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
@@ -49,7 +50,7 @@ class LoginController extends Controller
             return redirect()->route('register.show')->with('error','Username already exists');
             // return response()->json(['error'=>'already exist']);
        }
-       return redirect()->route('login.show');
+       return redirect()->route('login');
     }
     
     catch(\Exception $e){
@@ -59,7 +60,6 @@ class LoginController extends Controller
     }
     
     }
-
 
     public function logincheck(Request $request){
         
@@ -73,12 +73,23 @@ class LoginController extends Controller
         if($checkUsernameExist){
              $iscorrect=$this->loginInterface->logincheck($data);
             if(!$iscorrect){
-                     return redirect()->route('login.show')->with('error','Password is incorrect');
+                     return redirect()->route('login')->with('error','Password is incorrect');
                 }
+                $request->session()->regenerate();
                  return redirect()->route('dashboard.show');
         }
-        return redirect()->route('login.show')->with('error','User does not exist please register first!');
+        return redirect()->route('login')->with('error','User does not exist please register first!');
     }
+   public function logout(Request $request)
+{
+    Auth::logout();
+
+    // Invalidate session
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('login');
+}
 
     public function usershow(){
         return view('users');
