@@ -23,7 +23,4 @@ public function checkUsernameExist($username){
     return $this->loginContract->checkUsernameExist($username);
 }
 
-
-
-
 }

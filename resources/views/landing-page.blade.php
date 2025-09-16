@@ -193,7 +193,7 @@
       </nav>
 
       <div class="cta">
-        <button class="btn btn-ghost" onclick="window.location='{{route('login.show')}}'">Login</button>
+        <button class="btn btn-ghost" onclick="window.location='{{route('login')}}'">Login</button>
         <button class="btn btn-primary" onclick="scrollToSection('#pricing')">Get started</button>
       </div>
     </div>

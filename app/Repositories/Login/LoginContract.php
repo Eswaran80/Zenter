@@ -7,4 +7,5 @@ interface LoginContract{
     public function loginchck($data);
     public function checkUsernameExist($username);
 
+
 }
