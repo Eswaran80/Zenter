@@ -133,7 +133,7 @@ table tr:hover { background:#f1f1f1; }
 
 <!-- Main Content -->
 <div class="main-content">
-    <h1><i class="ri-dashboard-fill"></i> Welcome, Eswar! 🚀</h1>
+    <h1><i class="ri-dashboard-fill"></i> Welcome, {{auth()->user()->username}}! 🚀</h1>
 
     <!-- Quick Stats -->
     <div class="quick-stats">
@@ -160,9 +160,9 @@ table tr:hover { background:#f1f1f1; }
     <div class="section">
         <div class="section-box" style="text-align:center;">
             <img src="https://i.pravatar.cc/100" alt="Profile Picture" class="profile-img">
-            <h3><i class="ri-user-3-fill"></i> Eswar</h3>
+            <h3><i class="ri-user-3-fill"></i>{{auth()->user()->username}}</h3>
             <p>Role: Admin</p>
-            <p>Email: eswar@example.com</p>
+            <p>Email:{{auth()->user()->email}}</p>
             <button class="profile-btn"><i class="ri-edit-line"></i> Edit Profile</button>
         </div>
         <div class="section-box">
@@ -279,5 +279,16 @@ new Chart(progressCtx,{
     }
 });
 </script>
+
+
+<script>
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            // Force reload if coming from back/forward cache
+            window.location.reload();
+        }
+    });
+</script>
+
 </body>
 </html>

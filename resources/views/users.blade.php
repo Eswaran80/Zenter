@@ -139,6 +139,15 @@
             <label for="name">Full name</label>
             <input id="name" name="name" required />
           </div>
+          <div style="flex:1">
+            <label for="name">Full name</label>
+            <input id="name" name="name" required />
+          </div>
+          <div style="flex:1">
+            <label for="name">Full name</label>
+            <input id="name" name="name" required />
+          </div>
+          
           <div style="width:180px">
             <label for="role">Role</label>
             <select id="role" name="role"><option>Member</option><option>Manager</option><option>Admin</option></select>

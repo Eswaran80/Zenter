@@ -625,5 +625,14 @@
       });
     });
   </script>
+  <script>
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            // Force reload if coming from back/forward cache
+            window.location.reload();
+        }
+    });
+</script>
+
 </body>
 </html>

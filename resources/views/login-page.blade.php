@@ -97,7 +97,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
-      margin-top: 10px;
+      margin-top: px;
     }
 
     .btn:hover { background: #5848e5; }
@@ -146,7 +146,6 @@
         </div>
         @if(session('error'))
           <p style="color:orangered">{{session('error')}}</p>
-        
         @endif
         <button class="btn" type="submit">Login</button>
       </form>
@@ -157,5 +156,15 @@
       </div>
     </div>
   </div>
+
+  <script>
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            // Force reload if coming from back/forward cache
+            window.location.reload();
+        }
+    });
+</script>
+
 </body>
 </html>

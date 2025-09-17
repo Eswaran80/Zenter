@@ -150,11 +150,11 @@
       @if (session('error'))
     <p id="errorMsg" style="color: rgb(235, 110, 0)">{{ session('error') }}</p>
 
-     <script>
+     {{-- <script>
         setTimeout(() => {
             document.getElementById('errorMsg').style.display = 'none';
         }, 5000); // 5000ms = 5 seconds
-    </script>
+    </script> --}}
      @endif
 
 
@@ -166,5 +166,19 @@
       </div>
     </div>
   </div>
+
+  <script>
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            // Force reload if coming from back/forward cache
+            window.location.reload();
+        }
+    });
+</script>
+
+
+
+
+  
 </body>
 </html>
