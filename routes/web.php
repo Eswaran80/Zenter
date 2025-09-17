@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViewsController;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,21 @@ Route::middleware('auth',AuthMiddleware::class)->group(function(){
     return view('user_add_form');
 });
 Route::post('logout',[LoginController::class,'logout'])->name('logout');
+
+});
+
+Route::middleware('auth',AuthMiddleware::class)->controller(ViewsController::class)->group(function(){
+    Route::get('tasks','tasksshow')->name('task-page-show');
+    Route::get('Team','teamshow')->name('team-page-show');
+    Route::get('Reports','reportsshow')->name('reports-page-show');
+    Route::get('Notifications','notificationsshow')->name('notifications-page-show');
+    Route::get('Calendar','calendarshow')->name('calendar-page-show');
+    Route::get('Projects','projectsshow')->name('projects-page-show');
+    Route::get('Messages','messagesshow')->name('messages-page-show');
+    Route::get('Account','accountshow')->name('account-page-show');
+     Route::get('Support','supportshow')->name('support-page-show');
+      Route::get('Settings','settingsshow')->name('settings-page-show');
+
 
 });
 

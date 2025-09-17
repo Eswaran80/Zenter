@@ -62,6 +62,15 @@ body { background:#f4f7fd; color:#333; }
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.btn1.active{
+    background-color: #0366d1;
+    border-color: #ff3d00;
+}
+.btn1.active:hover{
+    background:  #0366d1;
+    cursor:default;
+}
+
 
 </style>
 </head>
@@ -76,9 +85,10 @@ body { background:#f4f7fd; color:#333; }
         </div>
         <i class="ri-user-3-line profile-icon" onclick="toggleDropdown()"></i>
         <div class="dropdown" id="profileDropdown">
-            <a href="#"><i class="ri-user-line"></i> Profile</a>
+            <a href="#"><i class="ri-user-line"></i>Profile</a>
             <a href="#"><i class="ri-settings-3-line"></i> Settings</a>
-            <a onclick="window.location='{{'/'}}'" ><i class="ri-logout-circle-r-line"></i> Logout</a>
+            {{-- <a onclick="window.location='{{'/'}}'" ><i class="ri-logout-circle-r-line"></i> Logout</a> --}}
+    
         </div>
     </div>
 </div>
@@ -86,25 +96,24 @@ body { background:#f4f7fd; color:#333; }
 <!-- Sidebar -->
 <div class="sidebar">
     <h2><img src="https://i.imgur.com/6C63FFlogo.png" alt="Logo"> Zenter</h2>
-    <a href="#" onclick="window.location='{{route('dashboard.show')}}'"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
-    <a href="#" onclick="window.location='{{route('users.page')}}'" ><i class="ri-user-settings-line"></i><span>Users</span></a>
-    <a href="#"><i class="ri-task-line"></i><span>Tasks</span></a>
-    <a href="#"><i class="ri-team-line"></i><span>Team</span></a>
-    <a href="#"><i class="ri-bar-chart-line"></i><span>Reports</span></a>
-    <a href="#"><i class="ri-notification-line"></i><span>Notifications</span></a>
-    <a href="#"><i class="ri-calendar-line"></i><span>Calendar</span></a>
-    <a href="#"><i class="ri-folder-line"></i><span>Projects</span></a>
-    <a href="#"><i class="ri-chat-1-line"></i><span>Messages</span></a>
-    <a href="#"><i class="ri-user-settings-line"></i><span>Account</span></a>
-    <a href="#"><i class="ri-customer-service-2-line"></i><span>Support</span></a>
-    <a href="#"><i class="ri-settings-3-line"></i><span>Settings</span></a>
+    <a href="#" class="btn1 {{ Route::is('dashboard.show') ? 'active' : '' }} " onclick="window.location='{{route('dashboard.show')}}'"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
+    <a href="#" class="btn1 {{ Route::is('users.page') ? 'active' : '' }} " onclick="window.location='{{route('users.page')}}'" ><i class="ri-user-settings-line"></i><span>Users</span></a>
+    <a href="#" class="btn1 {{ Route::is('task-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('task-page-show')}}'"><i  class="ri-task-line" ></i><span>Tasks</span></a>
+    <a href="#" class="btn1 {{ Route::is('team-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('team-page-show')}}'"><i class="ri-team-line"></i><span>Team</span></a>
+    <a href="#" class="btn1 {{ Route::is('reports-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('reports-page-show')}}'"><i class="ri-bar-chart-line"></i><span>Reports</span></a>
+    <a href="#" class="btn1 {{ Route::is('notifications-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('notifications-page-show')}}'"><i class="ri-notification-line"></i><span>Notifications</span></a>
+    <a href="#" class="btn1 {{ Route::is('calendar-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('calendar-page-show')}}'"><i class="ri-calendar-line"></i><span>Calendar</span></a>
+    <a href="#" class="btn1 {{ Route::is('projects-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('projects-page-show')}}'"><i class="ri-folder-line"></i><span>Projects</span></a>
+    <a href="#" class="btn1 {{ Route::is('messages-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('messages-page-show')}}'"><i class="ri-chat-1-line"></i><span>Messages</span></a>
+    <a href="#" class="btn1 {{ Route::is('account-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('account-page-show')}}'"><i class="ri-user-settings-line"></i><span>Account</span></a>
+    <a href="#" class="btn1 {{ Route::is('support-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('support-page-show')}}'"><i class="ri-customer-service-2-line"></i><span>Support</span></a>
+    <a href="#" class="btn1 {{ Route::is('settings-page-show') ? 'active' : '' }} "  onclick="window.location='{{route('settings-page-show')}}'"><i class="ri-settings-3-line"></i><span>Settings</span></a>
     <form action="{{ route('logout') }}" method="POST" style="display:inline;">
         @csrf
         <button type="submit" class="logout-link">
             <i class="ri-logout-circle-r-line"></i><span>Logout</span>
         </button>
     </form>
-</a>
 </div>
 
 

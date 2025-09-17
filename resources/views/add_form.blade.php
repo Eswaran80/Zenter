@@ -1,66 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <x-sidebar/>
-    <div class="main-content">
-       <h1>User adding form</h1>
-       <form action="#" method="POST">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Add User Personal Details</title>
 
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="John Doe" required>
-            </div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-            <div class="form-group">
-                <label>Gender</label>
-                <div class="gender-group">
-                    <label><input type="radio" name="gender" value="Male" required> Male</label>
-                    <label><input type="radio" name="gender" value="Female" required> Female</label>
-                    <label><input type="radio" name="gender" value="Other" required> Other</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" min="1" max="120" placeholder="30" required>
-            </div>
-
-            <div class="form-group">
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="1234567890" required>
-            </div>
-
-            <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" id="location" name="location" placeholder="City, Address" required>
-            </div>
-
-            <div class="button-group">
-                <button type="submit" class="btn-add"><i class="fas fa-plus"></i> Add User</button>
-                <button type="reset" class="btn-cancel"><i class="fas fa-times"></i> Cancel</button>
-            </div>
-
-        </form>
-    </div>
-
-    
-</body>
-</html>
-<style>
-
-     .main-content { margin-left:200px; padding:80px 20px 20px 20px; }
-    @media(max-width:768px) {
-      .main-content { margin-left:0; padding:100px 10px 20px 10px; }
-    }
-</style>
-
- <style>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
         .form-container {
             background-color: rgba(255, 255, 255, 0.98);
@@ -175,3 +132,62 @@
             }
         }
     </style>
+
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2><i class="fas fa-user-plus"></i> Add User Personal Details</h2>
+
+        <form action="#" method="POST">
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="gender-group">
+                    <label><input type="radio" name="gender" value="Male" required> Male</label>
+                    <label><input type="radio" name="gender" value="Female" required> Female</label>
+                    <label><input type="radio" name="gender" value="Other" required> Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" min="1" max="120" placeholder="30" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="1234567890" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="City, Address" required>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-add"><i class="fas fa-plus"></i> Add User</button>
+                <button type="reset" class="btn-cancel"><i class="fas fa-times"></i> Cancel</button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            // Force reload if coming from back/forward cache
+            window.location.reload();
+        }
+    });
+</script>

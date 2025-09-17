@@ -73,7 +73,8 @@ class LoginController extends Controller
         if($checkUsernameExist){
              $iscorrect=$this->loginInterface->logincheck($data);
             if(!$iscorrect){
-                     return redirect()->route('login')->with('error','Password is incorrect');
+                    //  return redirect()->route('login')->with('error','Password is incorrect');
+                     return redirect()->back()->with('error','Password is incorrect');
                 }
                 $request->session()->regenerate();
                  return redirect()->route('dashboard.show');
