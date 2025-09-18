@@ -17,8 +17,6 @@ Route::middleware('guest',AuthMiddleware::class)->group(function(){
     Route::post('loginCheck',[LoginController::class,'logincheck'])->name('login.check');
 });
 
-
-
 Route::middleware('auth',AuthMiddleware::class)->group(function(){
     Route::get('dashboard',[LoginController::class,'dashboardshow'])->name('dashboard.show');
 
@@ -45,6 +43,12 @@ Route::middleware('auth',AuthMiddleware::class)->controller(ViewsController::cla
      Route::get('Support','supportshow')->name('support-page-show');
       Route::get('Settings','settingsshow')->name('settings-page-show');
 
+
+});
+
+
+Route::get('test',function(){
+    return view('Test_page');
 
 });
 

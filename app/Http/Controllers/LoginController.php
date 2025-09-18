@@ -64,9 +64,13 @@ class LoginController extends Controller
     public function logincheck(Request $request){
         
          $validate=Validator::make($request->all(),[
-            'username'=>'required|min:5',
-            'password'=>'required|min:6'
+            'username'=>'required',
+            'password'=>'required'
         ]);
+        if($validate->fails()){
+            return redirect()->back()->with('error',$validate->errors()->first());
+
+        }
         $data=$validate->validated();
         $username=$data['username'];
         $checkUsernameExist=$this->loginInterface->checkUsernameExist($username);

@@ -137,12 +137,12 @@
       <form action="{{route('login.check')}}" method="post">
         @csrf
         <div class="input-group">
-          <i class="ri-mail-line"></i>
-          <input type="text" name="username" placeholder="Username" required>
+          <i class="ri-user-line"></i>
+          <input type="text" name="username" placeholder="Username">
         </div>
         <div class="input-group">
           <i class="ri-lock-2-line"></i>
-          <input type="password" name="password" placeholder="Password" required>
+          <input type="password" name="password" placeholder="Password">
         </div>
         @if(session('error'))
           <p style="color:orangered">{{session('error')}}</p>

@@ -8,14 +8,14 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
-body { background:#f4f7fd; color:#333; }
+body { background:backgroud colour; color:#333; }
 
 /* Sidebar */
 .sidebar { position: fixed; left:0; top:0; width:200px; height:100%; background: linear-gradient(180deg,#6C63FF,#00C9A7); color:#fff; display:flex; flex-direction:column; padding:15px 0; z-index:1000; }
 .sidebar h2 { text-align:center; margin-bottom:20px; font-size:1.5rem; font-weight:bold; display:flex; align-items:center; justify-content:center; gap:8px; }
 .sidebar h2 img { width:28px; height:28px; }
 .sidebar a { display:flex; align-items:center; padding:10px 15px; color:#fff; text-decoration:none; margin-bottom:5px; font-size:0.95rem; transition:0.3s; position:relative; }
-.sidebar a:hover { background:rgba(255,255,255,0.2); transform:translateX(5px); }
+.sidebar a:hover { background:rgba(46, 48, 158, 1); transform:translateX(5px); }
 .sidebar i { margin-right:10px; font-size:1.2rem; }
 
 /* Top Header */
