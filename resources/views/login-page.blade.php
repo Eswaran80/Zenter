@@ -137,7 +137,7 @@
       <form action="{{route('login.check')}}" method="post">
         @csrf
         <div class="input-group">
-          <i class="ri-mail-line"></i>
+          <i class="ri-user-line"></i>
           <input type="text" name="username" placeholder="Username" required>
         </div>
         <div class="input-group">

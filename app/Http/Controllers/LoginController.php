@@ -65,7 +65,7 @@ class LoginController extends Controller
         
          $validate=Validator::make($request->all(),[
             'username'=>'required|min:5',
-            'password'=>'required|min:6'
+            'password'=>'required'
         ]);
         $data=$validate->validated();
         $username=$data['username'];
