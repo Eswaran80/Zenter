@@ -6,6 +6,7 @@ use App\Services\Login\LoginInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\UserModel;
 
 class LoginController extends Controller
 {
@@ -96,7 +97,10 @@ class LoginController extends Controller
     return redirect()->route('login');
 }
 
-    public function usershow(){
-        return view('users');
-    }
+   public function usershow()
+{
+    $data = UserModel::all();
+    return view('users', compact('data'));
+}
+
 }

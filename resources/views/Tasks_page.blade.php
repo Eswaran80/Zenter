@@ -245,15 +245,12 @@
 
     <!-- Add Task Form -->
     <div class="glass task-form">
-      <input type="text" placeholder="Task name">
-      <input type="date">
-      <select>
-        <option>Pending</option>
-        <option>In Progress</option>
-        <option>Completed</option>
-      </select>
       <button>Add Task</button>
     </div>
+
+    <form action="">
+      
+    </form>
 
     <!-- Task Table -->
     <div class="glass table-container">
