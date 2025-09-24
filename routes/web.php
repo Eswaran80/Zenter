@@ -40,10 +40,9 @@ Route::middleware('auth',AuthMiddleware::class)->controller(ViewsController::cla
     Route::get('Projects','projectsshow')->name('projects-page-show');
     Route::get('Messages','messagesshow')->name('messages-page-show');
     Route::get('Account','accountshow')->name('account-page-show');
-     Route::get('Support','supportshow')->name('support-page-show');
-      Route::get('Settings','settingsshow')->name('settings-page-show');
-
-
+    Route::get('Support','supportshow')->name('support-page-show');
+    Route::get('Settings','settingsshow')->name('settings-page-show');
+    Route::post('user-store','storeUser')->name('user.store');
 });
 
 

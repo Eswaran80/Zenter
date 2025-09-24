@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Management</title>
   <style>
-    :root{
-      --bg-1: #0f1724;
-      --accent-1: #7c5cff;
-      --accent-2: #00d4ff;
-      --muted: rgba(255,255,255,0.65);
-      --glass-border: rgba(255,255,255,0.08);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
+  :root {
+  --bg-1: #121b22;
+  --accent-1: #c9e6e9;
+  --accent-2: #80a0a3;
+  --muted: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -48,22 +50,22 @@
     .panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 
     /* Controls */
-    .search{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;border:1px solid var(--glass-border);width:420px}
-    .search input{background:transparent;border:0;outline:none;color:inherit;font-weight:600}
+    .search{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;border:1px solid ;width:420px}
+    .search input{background:transparent;color:inherit;font-weight:600}
     .controls{display:flex;align-items:center;gap:12px}
     .btn{padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#071024;font-weight:700;cursor:pointer;}
     .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:10px;color:inherit;cursor:pointer;}
 
     /* Stats */
     .stats{display:flex;gap:12px;margin-top:10px}
-    .stat{flex:1;padding:16px;border-radius:12px;background:rgba(17, 152, 249, 0.911);border:1px solid var(--glass-border);}
+    .stat{flex:1;padding:16px;border-radius:12px;background:rgba(155, 173, 186, 0.911);border:1px solid var(--glass-border);}
     .stat h3{margin:0;font-size:13px;color:var(--muted)}
     .stat p{margin:8px 0 0;font-size:20px;font-weight:800}
 
     /* Table */
     .table-wrap{margin-top:18px;background:rgba(249, 69, 69, 0.01);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.03)}
     table{width:100%;border-collapse:collapse;font-size:14px}
-    thead th{ text-align:left;padding:12px 10px;color:var(--muted);font-weight:700; font-size:12px ;background-color: #15caee; color:white;}
+    thead th{ text-align:left;padding:12px 10px;color:var(--muted);font-weight:700; font-size:12px ;background-color: #4d7178; color:white;}
     td{padding:12px 10px;vertical-align:middle;border-top:1px solid rgba(255,255,255,0.02)}
     tbody tr:hover{background:rgba(255,255,255,0.03)}
 
@@ -118,6 +120,11 @@
             </tr>
           </thead>
           <tbody id="tbody">
+            @foreach($data as $users)
+            <tr>
+              <td>{{$users->name}}</td><td>{{$users->email}}</td><td>{{$users->role}}</td><td>{{$users->created_at}}</td><td>{{$users->status}}</td><td style="text-align:right"><button>Delete</button><button>Edit</button></td>
+            </tr>
+            @endforeach
 
           </tbody>
         </table>
@@ -135,14 +142,7 @@
       <form action="{{route('user.store')}}" method="post">
         @csrf
         <div class="row" style="margin-bottom:10px">
-          <div style="flex:1">
-            <label for="name">Full name</label>
-            <input id="name" name="name" required />
-          </div>
-          <div style="flex:1">
-            <label for="name">Full name</label>
-            <input id="name" name="name" required />
-          </div>
+
           <div style="flex:1">
             <label for="name">Full name</label>
             <input id="name" name="name" required />

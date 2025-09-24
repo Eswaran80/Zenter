@@ -14,15 +14,17 @@
 
   <style>
     :root{
-      --bg-0: #071023;
-      --bg-1: #0d1630;
-      --panel: #0f1626;
-      --muted: #9fb0c6;
-      --text: #eaf3ff;
-      --accent1: #4f46e5; /* indigo */
-      --accent2: #06b6d4; /* cyan */
-      --glass: rgba(255,255,255,0.03);
-      --card-shadow: 0 18px 50px rgba(3,6,20,0.6);
+      /* Updated color palette: dusk teal + coral */
+ --bg-0: #1b0a18;
+--bg-1: #2e1437;
+--panel: #732a5a;
+--muted: #c6a9b5;
+--text: #fff3f9;
+--accent1: #1547aa; /* coral red */
+--accent2: #063c65; /* golden yellow */
+--glass: rgba(255, 255, 255, 0.05);
+
+      --card-shadow: 0 18px 50px rgba(9, 63, 101, 0.911);
       --radius: 14px;
       --max-width: 1200px;
     }
@@ -32,10 +34,13 @@
     body{
       margin:0;
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:
-        radial-gradient(800px 400px at 10% 8%, rgba(79,70,229,0.06), transparent),
-        radial-gradient(700px 360px at 90% 92%, rgba(6,182,212,0.04), transparent),
-        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+     background:
+  radial-gradient(500px 280px at 20% 20%, rgba(0, 200, 255, 0.08), transparent),
+  radial-gradient(400px 220px at 80% 80%, rgba(255, 0, 128, 0.06), transparent),
+  linear-gradient(135deg, var(--bg-0) 0%, var(--bg-1) 100%);
+ 
+
+
       color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
@@ -48,7 +53,7 @@
     /* ---------- Navbar ---------- */
     header {
       position:fixed; left:0; right:0; top:0; z-index:1200;
-      background: linear-gradient(180deg, rgba(4,7,16,0.5), rgba(4,7,16,0.18));
+      background: linear-gradient(180deg, rgba(35, 65, 155, 0.6), rgba(4,7,16,0.15));
       border-bottom:1px solid rgba(255,255,255,0.03);
       backdrop-filter: blur(8px) saturate(120%);
     }
@@ -57,7 +62,7 @@
     .logo {
       width:44px; height:44px; border-radius:10px; display:inline-grid; place-items:center;
       background: linear-gradient(135deg,var(--accent1),var(--accent2)); color:white;
-      font-weight:800; box-shadow: 0 8px 30px rgba(79,70,229,0.08);
+      font-weight:800; box-shadow: 0 8px 30px rgba(0,180,216,0.08);
     }
     .nav .links { display:flex; gap:18px; align-items:center; color:var(--muted); font-weight:600 }
     .nav .links a { padding:8px 10px; border-radius:8px; transition:all .16s ease; }
@@ -66,7 +71,7 @@
     .cta { display:flex; gap:10px; align-items:center }
     .btn { border: none; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:700; transition:transform .12s ease, box-shadow .12s ease; }
     .btn-ghost { background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03) }
-    .btn-primary { background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; box-shadow:0 12px 30px rgba(79,70,229,0.12) }
+    .btn-primary { background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; box-shadow:0 12px 30px rgba(0,180,216,0.12) }
     .btn:active{ transform:translateY(1px) }
 
     @media (max-width:760px){
@@ -78,7 +83,7 @@
     @media (max-width:1100px){ .hero{ grid-template-columns: 1fr; padding-top:120px; gap:28px } }
 
     .hero-left { max-width:760px; padding:12px 6px }
-    .tag { display:inline-block; padding:8px 12px; border-radius:999px; background:rgba(6,182,212,0.08); color:var(--accent2); font-weight:700; margin-bottom:12px }
+    .tag { display:inline-block; padding:8px 12px; border-radius:999px; background:linear-gradient(90deg, rgba(0,180,216,0.08), rgba(255,122,89,0.06)); color:var(--accent1); font-weight:700; margin-bottom:12px }
     .title { font-family:"Montserrat"; font-weight:800; font-size: clamp(34px, 5.5vw, 56px); color:var(--text); line-height:1.02; margin:0 0 12px 0; }
     .sub { color:var(--muted); font-size:1.05rem; margin-bottom:18px; max-width:680px }
     .hero-actions { display:flex; gap:14px; align-items:center; margin-top:8px }
@@ -162,7 +167,7 @@
     @media (max-width:560px){ .footer-grid{ grid-template-columns:1fr } }
 
     .socials { display:flex; gap:12px; margin-top:12px }
-    .socials a { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:10px; background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; box-shadow:0 12px 30px rgba(79,70,229,0.08) }
+    .socials a { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:10px; background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; box-shadow:0 12px 30px rgba(0,180,216,0.08) }
 
     .muted { color:var(--muted) }
     .center { text-align:center }
@@ -193,6 +198,7 @@
       </nav>
 
       <div class="cta">
+        <!-- keep server route call intact for templating engines -->
         <button class="btn btn-ghost" onclick="window.location='{{route('login')}}'">Login</button>
         <button class="btn btn-primary" onclick="scrollToSection('#pricing')">Get started</button>
       </div>
@@ -207,16 +213,16 @@
         <h1 class="title">Manage tasks, ship features, and keep teams in sync</h1>
         <p class="sub">Zenter helps teams plan work, stay focused with sprints and cycles, and deliver reliably — with a delightful, fast UI.</p>
 
-        {{-- <div class="greeting">
-          <div class="type" id="typewriter"></div>
-        </div> --}}
+        <div class="greeting" aria-hidden="true">
+          <div class="type" style="height:30px" id="typewriter" aria-live="polite"></div>
+        </div>
 
         <div class="hero-actions">
           <button class="btn btn-primary" id="primaryCta">Start free trial</button>
           <button class="btn btn-ghost" onclick="scrollToSection('#demo')">Interactive demo</button>
         </div>
 
-        <div style="display:flex;gap:12px;margin-top:16px;">
+        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
           <div style="background:var(--glass); padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03)">
             <strong>For Teams</strong><div class="muted" style="font-weight:600">Scale from 1 → 100+</div>
           </div>
@@ -228,7 +234,7 @@
 
       <div class="hero-right" data-aos="zoom-in">
         <div class="stack" id="stack">
-          <article class="card c0">
+          <article class="card c0" data-card-index="0">
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop" alt="kanban">
             <div style="display:flex;flex-direction:column;gap:8px;">
               <div style="display:flex;align-items:center;gap:8px">
@@ -239,7 +245,7 @@
             </div>
           </article>
 
-          <article class="card c1">
+          <article class="card c1" data-card-index="1">
             <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?q=80&w=1600&auto=format&fit=crop" alt="team work">
             <div style="display:flex;flex-direction:column;gap:8px;">
               <div style="display:flex;align-items:center;gap:8px">
@@ -250,7 +256,7 @@
             </div>
           </article>
 
-          <article class="card c2">
+          <article class="card c2" data-card-index="2">
             <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop" alt="dashboard">
             <div style="display:flex;flex-direction:column;gap:8px;">
               <div style="display:flex;align-items:center;gap:8px">
@@ -391,7 +397,7 @@
           <div style="margin-top:14px"><button class="btn btn-primary">Start free</button></div>
         </div>
 
-        <div class="plan" style="transform:scale(1.02); border:1px solid rgba(79,70,229,0.12); box-shadow:0 16px 50px rgba(79,70,229,0.06)">
+        <div class="plan" style="transform:scale(1.02); border:1px solid rgba(0,180,216,0.12); box-shadow:0 16px 50px rgba(0,180,216,0.06)">
           <h3 style="margin:0 0 8px 0">Pro</h3>
           <p class="muted">Best for teams</p>
           <div style="font-weight:800; font-size:1.5rem; margin:10px 0">₹699 / mo</div>
@@ -454,9 +460,9 @@
       </div>
 
       <div class="faq" data-aos="fade-up">
-        <div class="qa"><strong>Is there a trial?</strong><div class="muted" style="margin-top:6px">Yes — 14 day free trial for Pro features.</div></div>
-        <div class="qa"><strong>Does Zenter integrate with Slack?</strong><div class="muted" style="margin-top:6px">Yes — notifications, reminders and quick commands available.</div></div>
-        <div class="qa"><strong>Can I import data?</strong><div class="muted" style="margin-top:6px">CSV import and migration support for paid plans.</div></div>
+        <div class="qa"><button class="qa-toggle" aria-expanded="false" style="width:100%;text-align:left;background:none;border:none;color:var(--text);font-weight:700;padding:0;">Is there a trial?</button><div class="muted" style="margin-top:6px">Yes — 14 day free trial for Pro features.</div></div>
+        <div class="qa"><button class="qa-toggle" aria-expanded="false" style="width:100%;text-align:left;background:none;border:none;color:var(--text);font-weight:700;padding:0;">Does Zenter integrate with Slack?</button><div class="muted" style="margin-top:6px">Yes — notifications, reminders and quick commands available.</div></div>
+        <div class="qa"><button class="qa-toggle" aria-expanded="false" style="width:100%;text-align:left;background:none;border:none;color:var(--text);font-weight:700;padding:0;">Can I import data?</button><div class="muted" style="margin-top:6px">CSV import and migration support for paid plans.</div></div>
       </div>
     </section>
 
@@ -565,9 +571,10 @@
     // year
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // typewriter greeting (cycles a few messages)
+    // typewriter greeting (cycles a few messages) - guarded to avoid errors when element missing
     (function typeWriter(){
       const el = document.getElementById('typewriter');
+      if(!el) return;
       const messages = ['Welcome, product teams.', 'Plan better. Ship faster.', 'Focus on what matters.'];
       let idx = 0, char = 0, forward = true, delay = 60;
       function step(){
@@ -586,11 +593,14 @@
       step();
     })();
 
-    // subtle tilt for stack
+    // subtle tilt for stack - preserves initial transforms and restores them on mouseleave
     (function tiltStack(){
       const stack = document.getElementById('stack');
       if(!stack) return;
-      const cards = stack.querySelectorAll('.card');
+      const cards = Array.from(stack.querySelectorAll('.card'));
+      // store initial transforms so we can restore
+      const initialTransforms = cards.map(c => c.style.transform || getComputedStyle(c).transform || '');
+
       stack.addEventListener('mousemove', e => {
         const rect = stack.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -605,8 +615,35 @@
           if(img) img.style.transform = `scale(1.06) translate(${ -x * 6 * (i+1) }px, ${ -y * 4 * (i+1) }px)`;
         });
       });
+
       stack.addEventListener('mouseleave', ()=> {
-        cards.forEach(c => { c.style.transform = ''; const img = c.querySelector('img'); if(img) img.style.transform = '';});
+        cards.forEach((c, idx) => {
+          c.style.transform = initialTransforms[idx] || '';
+          const img = c.querySelector('img'); if(img) img.style.transform = '';
+        });
+      });
+    })();
+
+    // FAQ accordion (simple accessible toggle)
+    (function faqToggle(){
+      document.querySelectorAll('.qa').forEach(qa => {
+        const btn = qa.querySelector('.qa-toggle');
+        const answer = btn.nextElementSibling;
+        if(!btn || !answer) return;
+        answer.style.maxHeight = '0px';
+        answer.style.overflow = 'hidden';
+        answer.style.transition = 'max-height 260ms ease, padding 260ms ease';
+        btn.addEventListener('click', ()=>{
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          if(!expanded){
+            answer.style.maxHeight = answer.scrollHeight + 20 + 'px';
+            answer.style.paddingTop = '8px';
+          } else {
+            answer.style.maxHeight = '0px';
+            answer.style.paddingTop = '0px';
+          }
+        });
       });
     })();
 
@@ -619,20 +656,23 @@
     // nav links smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        // allow external anchors if they include full URL
+        if(a.getAttribute('href').startsWith('#')){
+          e.preventDefault();
+          const target = document.querySelector(a.getAttribute('href'));
+          if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
       });
     });
-  </script>
-  <script>
+
+    // handle pageshow back cache
     window.addEventListener("pageshow", function (event) {
         if (event.persisted) {
             // Force reload if coming from back/forward cache
             window.location.reload();
         }
     });
-</script>
+  </script>
 
 </body>
 </html>
