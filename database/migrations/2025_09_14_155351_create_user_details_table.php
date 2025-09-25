@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('role');
             $table->string('email');
+            $table->unsignedInteger('status')->default(1);
             $table->timestamps();
         });
     }

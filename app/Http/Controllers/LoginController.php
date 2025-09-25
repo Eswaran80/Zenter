@@ -100,7 +100,10 @@ class LoginController extends Controller
    public function usershow()
 {
     $data = UserModel::all();
-    return view('users', compact('data'));
+    $total=UserModel::count();
+    $active=UserModel::where('status',1)->count();
+    $inactive=UserModel::where('status',0)->count();
+    return view('users', compact('data','total','active','inactive'));
 }
 
 }

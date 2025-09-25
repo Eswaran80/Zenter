@@ -10,35 +10,31 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
 body { background:#ffffff; color:#333; }
 
-/* Sidebar */
-.sidebar { position: fixed; left:0; top:0; width:200px; height:100%; background: linear-gradient(180deg,#f3f3f3,#e0e0e0); color:#333; display:flex; flex-direction:column; padding:15px 0; z-index:1000; }
-.sidebar h2 { text-align:center; margin-bottom:20px; font-size:1.5rem; font-weight:bold; display:flex; align-items:center; justify-content:center; gap:8px; }
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background: #ffffff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+}
+.sidebar h2 {
+    text-align:center;
+    margin-bottom:20px;
+    font-size:1.5rem;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
 .sidebar h2 img { width:28px; height:28px; }
-.sidebar a { display:flex; align-items:center; padding:10px 15px; color:#333; text-decoration:none; margin-bottom:5px; font-size:0.95rem; transition:0.3s; position:relative; }
-.sidebar a:hover { background:rgba(0,0,0,0.1); transform:translateX(5px); }
-.sidebar i { margin-right:10px; font-size:1.2rem; }
-
-/* Top Header */
-.top-header { position: fixed; top:0; left:200px; right:0; height:60px; background: #ffffff; display:flex; justify-content:flex-end; align-items:center; padding:0 20px; box-shadow:0 3px 12px rgba(0,0,0,0.1); z-index:1001; }
-.top-header .top-right { display:flex; align-items:center; position:relative; gap:20px; }
-.top-header .profile-icon { font-size:1.6rem; color:#333; cursor:pointer; transition:0.3s; }
-.top-header .profile-icon:hover { color:#0366d1; transform:scale(1.2); }
-.top-header .notif { position:relative; font-size:1.5rem; color:#333; cursor:pointer; transition:0.3s; }
-.top-header .notif:hover { color:#0366d1; transform:rotate(15deg); }
-.notif-badge { position:absolute; top:-5px; right:-5px; background:#ff3d00; color:#fff; font-size:0.65rem; padding:2px 5px; border-radius:50%; font-weight:bold; }
-
-/* Dropdown Menu */
-.dropdown { position:absolute; top:45px; right:0; background:#fff; border-radius:8px; box-shadow:0 3px 10px rgba(0,0,0,0.1); display:none; min-width:150px; z-index:1002; padding:5px 0; animation:fadeIn 0.3s ease-in-out; }
-.dropdown a { display:block; padding:10px 15px; text-decoration:none; color:#333; font-size:0.9rem; transition:0.3s; }
-.dropdown a:hover { background:#f4f4f4; }
-@keyframes fadeIn { from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
-
-.item, .activity-item { margin-bottom:8px; padding:6px 10px; border-radius:8px; background:#f9f9f9; display:flex; align-items:center; justify-content:space-between; }
-.task-item i, .activity-item i { margin-right:6px; color:#0366d1; }
-
-/* Responsive */
-@media(max-width:768px) { .main-content { margin-left:0; padding:100px 10px 20px 10px; } .sidebar { width:55px; } .sidebar h2 { display:none; } .sidebar a span { display:none; } .top-header { left:55px; } }
-
 .sidebar a,
 .sidebar button.logout-link {
     display: flex;
@@ -52,26 +48,103 @@ body { background:#ffffff; color:#333; }
     text-align: left;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
-
 .sidebar a:hover,
 .sidebar button.logout-link:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.08);
+}
+.sidebar i { margin-right:10px; font-size:1.2rem; }
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    height: 60px;
+    background: #ffffff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    z-index: 1001;
+}
+.top-header .top-right { display:flex; align-items:center; position:relative; gap:20px; }
+.top-header .profile-icon { font-size:1.6rem; color:#333; cursor:pointer; transition:0.3s; }
+.top-header .profile-icon:hover { color:#0366d1; transform:scale(1.2); }
+.top-header .notif { position:relative; font-size:1.5rem; color:#333; cursor:pointer; transition:0.3s; }
+.top-header .notif:hover { color:#0366d1; transform:rotate(15deg); }
+.notif-badge {
+    position:absolute;
+    top:-5px;
+    right:-5px;
+    background:#ff3d00;
+    color:#fff;
+    font-size:0.65rem;
+    padding:2px 5px;
+    border-radius:50%;
+    font-weight:bold;
+}
+
+.dropdown {
+    position:absolute;
+    top:45px;
+    right:0;
+    background:#fff;
+    border-radius:8px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    display:none;
+    min-width:150px;
+    z-index:1002;
+    padding:5px 0;
+    animation:fadeIn 0.3s ease-in-out;
+}
+.dropdown a {
+    display:block;
+    padding:10px 15px;
+    text-decoration:none;
+    color:#333;
+    font-size:0.9rem;
+    transition:0.3s;
+}
+.dropdown a:hover { background:#f4f4f4; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
+
+.item, .activity-item {
+    margin-bottom:8px;
+    padding:6px 10px;
+    border-radius:8px;
+    background:#f9f9f9;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.task-item i, .activity-item i { margin-right:6px; color:#0366d1; }
+
+@media(max-width:768px) {
+    .main-content { margin-left:0; padding:100px 10px 20px 10px; }
+    .sidebar { width:55px; }
+    .sidebar h2 { display:none; }
+    .sidebar a span { display:none; }
+    .top-header { left:55px; }
 }
 
 .btn1.active {
-    background-color: #0366d1;
-    border-color: #ff3d00;
+    background-color: #85a7cc;
+    color: #fff !important;
+    box-shadow: 0 2px 6px rgba(3,102,209,0.3);
 }
 .btn1.active:hover {
-    background: #0366d1;
+    background: #538ecc;
     cursor: default;
 }
 </style>
 </head>
 <body>
 
-<!-- Top Header -->
 <div class="top-header">
     <div class="top-right">
         <div class="notif">
@@ -86,7 +159,6 @@ body { background:#ffffff; color:#333; }
     </div>
 </div>
 
-<!-- Sidebar -->
 <div class="sidebar">
     <h2><img src="https://i.imgur.com/6C63FFlogo.png" alt="Logo"> Zenter</h2>
     <a href="#" class="btn1 {{ Route::is('dashboard.show') ? 'active' : '' }}" onclick="window.location='{{route('dashboard.show')}}'"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
@@ -110,11 +182,10 @@ body { background:#ffffff; color:#333; }
 </div>
 
 <script>
-    // Toggle Profile Dropdown
-    function toggleDropdown() {
-        const dropdown = document.getElementById('profileDropdown');
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    }
+function toggleDropdown() {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
 </script>
 
 </body>

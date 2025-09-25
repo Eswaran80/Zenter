@@ -4,91 +4,237 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Management</title>
-  <style>
-  :root {
-  --bg-1: #121b22;
-  --accent-1: #c9e6e9;
-  --accent-2: #80a0a3;
-  --muted: rgba(255, 255, 255, 0.5);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-}
+   
+</head>
+<style>
 
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background: var(--bg-1);
-      color:#eaf0ff;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    /* Layout */
-    .main-content { margin-left:200px; padding:80px 20px 20px 20px; }
+     .main-content { margin-left:200px; padding:80px 20px 20px 20px; }
     @media(max-width:768px) {
       .main-content { margin-left:0; padding:100px 10px 20px 10px; }
     }
+    /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
 
-    /* Sidebar */
-    .sidebar{
-      width:200px;
-      position:fixed;
-      top:0;left:0;bottom:0;
-      background:linear-gradient(180deg,rgba(255,255,255,0.06), transparent);
-      border-right:1px solid var(--glass-border);
-      padding:20px;
-    }
+/* Layout */
+body {
+  background: #f6f8fa;
+  color: #222;
+}
 
-    /* Panel */
-    .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-radius:18px;padding:24px;
-      border:1px solid var(--glass-border);
-      min-height:640px;
-    }
-    .panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.main-content {
+  margin-left: 200px;
+  padding: 80px 20px 20px 20px;
+}
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 100px 10px 20px 10px;
+  }
+}
 
-    /* Controls */
-    .search{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;border:1px solid ;width:420px}
-    .search input{background:transparent;color:inherit;font-weight:600}
-    .controls{display:flex;align-items:center;gap:12px}
-    .btn{padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#071024;font-weight:700;cursor:pointer;}
-    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:10px;color:inherit;cursor:pointer;}
+/* Panel */
+.panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 20px;
+}
 
-    /* Stats */
-    .stats{display:flex;gap:12px;margin-top:10px}
-    .stat{flex:1;padding:16px;border-radius:12px;background:rgba(155, 173, 186, 0.911);border:1px solid var(--glass-border);}
-    .stat h3{margin:0;font-size:13px;color:var(--muted)}
-    .stat p{margin:8px 0 0;font-size:20px;font-weight:800}
+/* Header */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
 
-    /* Table */
-    .table-wrap{margin-top:18px;background:rgba(249, 69, 69, 0.01);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.03)}
-    table{width:100%;border-collapse:collapse;font-size:14px}
-    thead th{ text-align:left;padding:12px 10px;color:var(--muted);font-weight:700; font-size:12px ;background-color: #4d7178; color:white;}
-    td{padding:12px 10px;vertical-align:middle;border-top:1px solid rgba(255,255,255,0.02)}
-    tbody tr:hover{background:rgba(255,255,255,0.03)}
+.panel-header .muted {
+  color: #666;
+  font-size: 14px;
+}
 
-    .avatar{width:44px;height:44px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#071024}
-    .role{font-weight:700;padding:6px 8px;border-radius:999px;font-size:12px}
+.stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+}
+.stat {
+  background: #f2f4f7;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+.stat h3 {
+  font-size: 14px;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.stat p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
 
-    /* Switch */
-    .switch{width:46px;height:26px;background:rgba(255,255,255,0.06);border-radius:999px;display:inline-block;position:relative;padding:3px}
-    .switch span{position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:white;transition:all .25s}
-    .switch.on{background:linear-gradient(90deg,var(--accent-1),var(--accent-2))}
-    .switch.on span{transform:translateX(20px)}
+/* Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.search input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 220px;
+}
+.search input:focus {
+  outline: none;
+  border-color: #007bff;
+}
 
-    /* Modal */
-    .modal{position:fixed;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:40px;z-index:9;pointer-events:none}
-    .modal .window{width:640px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#071024;border-radius:14px;padding:18px;border:1px solid var(--glass-border);pointer-events:auto;transform:translateY(40px);opacity:0;transition:all .28s}
-    .modal.show .window{transform:translateY(0);opacity:1}
+/* Buttons */
+.btn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn:hover { background: #0062d6; }
 
-    /* Form */
-    label{display:block;font-weight:600;margin-bottom:6px}
-    .row{display:flex;gap:10px}
-    input,select{padding:12px;border-radius:8px;background:white;border:1px solid rgba(255,255,255,0.04);outline:none;color:inherit;width:100%}
-  </style>
-</head>
+.ghost {
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+.ghost:hover {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead {
+  background: #f2f4f7;
+}
+th, td {
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+th {
+  font-weight: 600;
+  color: #444;
+}
+td button {
+  margin-left: 6px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+td button:first-child {
+  background: #ff4d4f;
+  color: #fff;
+}
+td button:first-child:hover {
+  background: #e04445;
+}
+td button:last-child {
+  background: #ffa940;
+  color: #fff;
+}
+td button:last-child:hover {
+  background: #e38c27;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; 
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal1 {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; 
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal1.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.window {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 95%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.window label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #444;
+}
+.window input, .window select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.window input:focus, .window select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+
+</style>
 <body>
 
   <x-sidebar/>
@@ -100,9 +246,9 @@
           <div style="font-size:22px;font-weight:800">Users</div>
           <div class="muted">Manage team, roles & access</div>
           <div class="stats">
-            <div class="stat"><h3>Total Users</h3><p id="statTotal">1,248</p></div>
-            <div class="stat"><h3>Active</h3><p id="statActive">1,114</p></div>
-            <div class="stat"><h3>Pending Invites</h3><p id="statPending">18</p></div>
+            <div class="stat"><h3>Total Users</h3><p id="statTotal">{{$total ?? 0}}</p></div>
+            <div class="stat"><h3>Active</h3><p id="statActive">{{$active ?? 0}}</p></div>
+            <div class="stat"><h3>In Active</h3><p id="statPending">{{$inactive ?? 0}}</p></div>
           </div>
         </div>
         <div class="controls">
@@ -122,7 +268,13 @@
           <tbody id="tbody">
             @foreach($data as $users)
             <tr>
-              <td>{{$users->name}}</td><td>{{$users->email}}</td><td>{{$users->role}}</td><td>{{$users->created_at}}</td><td>{{$users->status}}</td><td style="text-align:right"><button>Delete</button><button>Edit</button></td>
+              <td>{{$users->name}}</td><td>{{$users->email}}</td><td>{{$users->role}}</td><td>{{$users->created_at}}</td><td>
+    @if($users->status == 1)
+        <span class="status active">Active</span>
+    @else
+        <span class="status inactive">Inactive</span>
+    @endif
+</td><td style="text-align:right"><button>Delete</button><button id="editBtn">Edit</button></td>
             </tr>
             @endforeach
 
@@ -136,7 +288,7 @@
   <div class="modal" id="modal" aria-hidden="true">
     <div class="window">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <div style="font-weight:800">Add / Edit User</div>
+        <div style="font-weight:800">Add User</div>
         <button class="ghost" id="closeModal">X</button>
       </div>
       <form action="{{route('user.store')}}" method="post">
@@ -157,18 +309,54 @@
         <input name="email" id="email" type="email" required />
         <div style="display:flex;justify-content:flex-end;margin-top:12px;gap:8px">
           <button type="button" class="ghost" id="cancel">Cancel</button>
-          <button class="btn" type="submit">Save user</button>
+          <button class="btn" type="submit" id="closeModal">Save user</button>
         </div>
       </form>
     </div>
   </div>
+  
+  <!-- Modal -->
+<div class="modal" id="modal1" aria-hidden="true">
+  <div class="window">
+    <div style="justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-weight:800">Edit User</div>
+      <button type="button" class="ghost" id="closeModal">X</button>
+    </div>
+
+    <form id="userForm" action="{{route('user.store')}}" method="post">
+      @csrf
+      <label for="name">Full name</label>
+      <input id="name" name="name" required />
+
+      <label for="email">Email</label>
+      <input name="email" id="email" type="email" required />
+
+      <label for="role">Role</label>
+      <select id="role" name="role">
+        <option>Member</option>
+        <option>Manager</option>
+        <option>Admin</option>
+      </select>
+
+      <label for="status">Status</label>
+      <select id="status" name="status">
+        <option value="1">Active</option>
+        <option value="0">Inactive</option>
+      </select>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" placeholder="Leave blank to keep current" />
+
+      <div style="display:flex;justify-content:flex-end;margin-top:12px;gap:8px">
+        <button type="button" class="ghost" id="cancel">Cancel</button>
+        <button class="btn" type="submit">Save User</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 
   <script>
-    /* ---------- Sample data ---------- */
-  
-      /* Search */
- 
-    /* Modal */
     const modal=document.getElementById('modal');
     const userForm=document.getElementById('userForm');
     let editingId=null;
@@ -185,23 +373,8 @@
     document.getElementById('addUserBtn').onclick=()=>openModal();
     document.getElementById('closeModal').onclick=closeModal;
     document.getElementById('cancel').onclick=closeModal;
+    document.getElementById('save').onclick=closeModal;
 
-    userForm.onsubmit=e=>{
-      e.preventDefault();
-      const data={id:editingId||users.length+1,name:userForm.name.value,email:userForm.email.value,role:userForm.role.value,lastSeen:'Just now',active:true};
-      if(editingId){
-        const i=users.findIndex(x=>x.id===editingId); users[i]={...users[i],...data};
-      }else users.unshift(data);
-      render(users); closeModal();
-    };
-
-    /* Export CSV */
-    document.getElementById('exportBtn').onclick=()=>{
-      const rows=[['Name','Email','Role','LastSeen','Active'],...users.map(u=>[u.name,u.email,u.role,u.lastSeen,u.active])];
-      const csv=rows.map(r=>r.join(',')).join('\n');
-      const blob=new Blob([csv],{type:'text/csv'});
-      const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='users.csv'; a.click();
-    };
   </script>
 </body>
 </html>
