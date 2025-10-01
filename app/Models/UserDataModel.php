@@ -8,13 +8,7 @@ use App\Models\TasksModel;
 
 class UserDataModel extends Model
 {
-    protected $table='users_data';
+    protected $table='users_personal_data';
     protected $fillable=['user_id','name','description','gender','dob','location'];
 
-    public function logindetails(){
-        return $this->belongsTo(LoginModel::class);
-    }
-    public function taskDetails(){
-        return $this->hasMany(TasksModel::class);
-    }
 }

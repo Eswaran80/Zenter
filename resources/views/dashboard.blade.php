@@ -6,130 +6,228 @@
 <title>Zenter Dashboard</title>
 <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
-body { background:#f4f7fd; color:#333; }
-
-/* Sidebar */
-.sidebar { position: fixed; left:0; top:0; width:200px; height:100%; background: linear-gradient(180deg,#6C63FF,#00C9A7); color:#fff; display:flex; flex-direction:column; padding:15px 0; z-index:1000; }
-.sidebar h2 { text-align:center; margin-bottom:20px; font-size:1.5rem; font-weight:bold; display:flex; align-items:center; justify-content:center; gap:8px; }
-.sidebar h2 img { width:28px; height:28px; }
-.sidebar a { display:flex; align-items:center; padding:10px 15px; color:#fff; text-decoration:none; margin-bottom:5px; font-size:0.95rem; transition:0.3s; position:relative; }
-.sidebar a:hover { background:rgba(255,255,255,0.2); transform:translateX(5px); }
-.sidebar i { margin-right:10px; font-size:1.2rem; }
-
-/* Top Header */
-.top-header { position: fixed; top:0; left:200px; right:0; height:60px; background: linear-gradient(90deg,#6C63FF,#00C9A7); display:flex; justify-content:flex-end; align-items:center; padding:0 20px; box-shadow:0 3px 12px rgba(0,0,0,0.15); z-index:1001; }
-.top-header .top-right { display:flex; align-items:center; position:relative; gap:20px; }
-.top-header .profile-icon { font-size:1.6rem; color:#fff; cursor:pointer; transition:0.3s; }
-.top-header .profile-icon:hover { color:#ffe600; transform:scale(1.2); }
-.top-header .notif { position:relative; font-size:1.5rem; color:#fff; cursor:pointer; transition:0.3s; }
-.top-header .notif:hover { color:#ffe600; transform:rotate(15deg); }
-.notif-badge { position:absolute; top:-5px; right:-5px; background:#ff3d00; color:#fff; font-size:0.65rem; padding:2px 5px; border-radius:50%; font-weight:bold; }
-
-/* Dropdown Menu */
-.dropdown { position:absolute; top:45px; right:0; background:#fff; border-radius:8px; box-shadow:0 3px 10px rgba(0,0,0,0.15); display:none; min-width:150px; z-index:1002; padding:5px 0; animation:fadeIn 0.3s ease-in-out; }
-.dropdown a { display:block; padding:10px 15px; text-decoration:none; color:#333; font-size:0.9rem; transition:0.3s; }
-.dropdown a:hover { background:#f4f4f4; }
-@keyframes fadeIn { from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
-
-/* Main Content */
-.main-content { margin-left:200px; padding:80px 20px 20px 20px; }
-h1 { font-size:1.8rem; margin-bottom:20px; color:#6C63FF; display:flex; align-items:center; gap:10px; }
-h1 i { color:#00C9A7; }
-
-/* Charts */
-.chart-container { display:flex; flex-wrap:wrap; gap:20px; margin-bottom:20px; justify-content:space-between; }
-.chart-box { flex:1 1 48%; min-width:250px; height:250px; background:#fff; padding:15px; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.08); transition:transform 0.3s, box-shadow 0.3s; }
-.chart-box:hover { transform:translateY(-5px); box-shadow:0 12px 28px rgba(0,0,0,0.2); }
-
-/* Sections */
-.section { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:20px; }
-.section-box { flex:1; min-width:250px; background:#fff; padding:15px; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.08); font-size:0.9rem; transition:0.3s; }
-.section-box:hover { transform:translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.2); }
-.section-box h3 { margin-bottom:10px; color:#6C63FF; font-size:1.1rem; display:flex; align-items:center; gap:6px; }
-.section-box h3 i { color:#00C9A7; }
-.task-item, .activity-item { margin-bottom:8px; padding:6px 10px; border-radius:8px; background:#f9f9f9; display:flex; align-items:center; justify-content:space-between; }
-.task-item i, .activity-item i { margin-right:6px; color:#6C63FF; }
-
-/* Status */
-.task-item span.status { padding:2px 6px; border-radius:8px; font-size:0.75rem; font-weight:bold; }
-.status.completed { background:#00C9A7; color:#fff; }
-.status.pending { background:#ff9800; color:#fff; }
-.status.inprogress { background:#f44336; color:#fff; }
-
-/* Profile */
-.profile-img { border-radius:50%; width:100px; height:100px; margin-bottom:10px; border:3px solid #6C63FF; animation:float 3s ease-in-out infinite; }
-@keyframes float { 0%{transform:translateY(0);} 50%{transform:translateY(-6px);} 100%{transform:translateY(0);} }
-.profile-btn { padding:6px 12px; border:none; border-radius:8px; background:#6C63FF; color:#fff; cursor:pointer; margin-top:8px; transition:0.3s; }
-.profile-btn:hover { background:#00C9A7; transform:scale(1.05); }
-
-/* Table */
-table { width:100%; border-collapse:collapse; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,0.08); font-size:0.9rem; }
-table th, table td { padding:10px; text-align:left; border-bottom:1px solid #eee; }
-table th { background:linear-gradient(90deg,#6C63FF,#00C9A7); color:#fff; }
-table tr:hover { background:#f1f1f1; }
-
-/* Quick Stats */
-.cards { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:25px; justify-content:space-between; }
-.card { flex:1 1 180px; min-width:180px; background:linear-gradient(135deg,#6C63FF,#00C9A7); padding:20px; border-radius:15px; color:#fff; box-shadow:0 8px 20px rgba(0,0,0,0.15); transition:transform 0.4s, box-shadow 0.4s, font-size 0.3s; font-size:0.95rem; position:relative; overflow:hidden; }
-.card:hover { transform:translateY(-5px) scale(1.05); box-shadow:0 12px 28px rgba(0,0,0,0.25); background:linear-gradient(135deg,#4A3FFF,#009688); }
-.card h3 { color:#ffe600; margin-bottom:8px; font-size:1.1rem; display:flex; align-items:center; gap:6px; }
-.card h3 i { color:#fff; font-size:1.2rem; }
-.card p { color:rgba(255,255,255,0.9); font-size:0.9rem; }
-
-/* Quick Stats small */
-.quick-stats { display:flex; gap:20px; margin-bottom:25px; flex-wrap:wrap; justify-content:space-between; }
-.quick-stat { flex:1 1 140px; min-width:120px; background:linear-gradient(135deg,#00C9A7,#6C63FF); padding:15px; border-radius:15px; color:#fff; text-align:center; box-shadow:0 8px 20px rgba(0,0,0,0.15); transition:transform 0.4s, box-shadow 0.4s, background 0.4s; position:relative; overflow:hidden; animation:pulse 3s infinite ease-in-out; }
-.quick-stat:hover { transform:translateY(-5px) scale(1.05); box-shadow:0 12px 28px rgba(0,0,0,0.25); background:linear-gradient(135deg,#009688,#4A3FFF); }
-.quick-stat h4 { margin-bottom:8px; font-size:1rem; font-weight:600; display:flex; align-items:center; justify-content:center; gap:6px; }
-.quick-stat h4::before { content:"★"; font-size:1.1rem; color:#ffe600; }
-.quick-stat p { font-size:0.85rem; color:rgba(255,255,255,0.9); font-weight:500; }
-
-@keyframes pulse {
-  0% {transform:scale(1); box-shadow:0 8px 20px rgba(0,0,0,0.15);}
-  50% {transform:scale(1.03); box-shadow:0 12px 28px rgba(0,0,0,0.25);}
-  100% {transform:scale(1); box-shadow:0 8px 20px rgba(0,0,0,0.15);}
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+body {
+  background: #f5f7fb;
+  color: #333;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 200px;
+  padding: 80px 20px 40px;
+}
+
+.main-content h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #222;
+}
+
+h2 {
+  margin: 25px 0 15px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Quick Stats */
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.quick-stat {
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.2s;
+}
+.quick-stat:hover {
+  transform: translateY(-4px);
+}
+.quick-stat h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #666;
+}
+.quick-stat p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #0366d1;
+}
+
+/* Cards Section */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+.card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #444;
+}
+.card p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #0366d1;
+}
+
+/* Charts */
+.chart-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.chart-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  height: 320px;
+}
+
+/* Sections */
+.section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.section-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.section-box h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Profile Box */
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  border: 3px solid #0366d1;
+}
+.profile-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: #0366d1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+.profile-btn:hover {
+  background: #024a9f;
+}
+
+/* Task & Activity Items */
+.task-item,
+.activity-item {
+  background: #f9fafc;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
+}
+.task-item i,
+.activity-item i {
+  margin-right: 6px;
+  color: #0366d1;
+}
+
+/* Status Tags */
+.status {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: #fff;
+}
+.status.inprogress { background: #ff9800; }
+.status.pending { background: #f44336; }
+.status.completed { background: #00C9A7; }
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+thead {
+  background: #0366d1;
+  color: #fff;
+}
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+tbody tr:nth-child(even) { background: #f9f9f9; }
+
 /* Responsive */
-@media(max-width:768px) { .main-content { margin-left:0; padding:100px 10px 20px 10px; } .sidebar { width:55px; } .sidebar h2 { display:none; } .sidebar a span { display:none; } .top-header { left:55px; } }
+@media(max-width: 768px) {
+  .main-content { margin-left: 0; padding: 80px 15px 30px; }
+}
+
+
 </style>
-</head>
 <body>
  <x-sidebar/>
-<!-- Top Header -->
-{{-- <div class="top-header">
-    <div class="top-right">
-        <div class="notif">
-            <i class="ri-notification-line"></i>
-            <span class="notif-badge">3</span>
-        </div>
-        <i class="ri-user-3-line profile-icon" onclick="toggleDropdown()"></i>
-        <div class="dropdown" id="profileDropdown">
-            <a href="#"><i class="ri-user-line"></i> Profile</a>
-            <a href="#"><i class="ri-settings-3-line"></i> Settings</a>
-            <a onclick="window.location='{{'/'}}'" ><i class="ri-logout-circle-r-line"></i> Logout</a>
-        </div>
-    </div>
-</div>
-
-<!-- Sidebar -->
-<div class="sidebar">
-    <h2><img src="https://i.imgur.com/6C63FFlogo.png" alt="Logo"> Zenter</h2>
-    <a href="#"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
-    <a href="#"><i class="ri-task-line"></i><span>Tasks</span></a>
-    <a href="#"><i class="ri-team-line"></i><span>Team</span></a>
-    <a href="#"><i class="ri-bar-chart-line"></i><span>Reports</span></a>
-    <a href="#"><i class="ri-notification-line"></i><span>Notifications</span></a>
-    <a href="#"><i class="ri-calendar-line"></i><span>Calendar</span></a>
-    <a href="#"><i class="ri-folder-line"></i><span>Projects</span></a>
-    <a href="#"><i class="ri-chat-1-line"></i><span>Messages</span></a>
-    <a href="#"><i class="ri-user-settings-line"></i><span>Account</span></a>
-    <a href="#"><i class="ri-customer-service-2-line"></i><span>Support</span></a>
-    <a href="#"><i class="ri-settings-3-line"></i><span>Settings</span></a>
-    <a href="#"><i class="ri-logout-circle-r-line"></i><span>Logout</span></a>
-</div> --}}
 
 <!-- Main Content -->
 <div class="main-content">

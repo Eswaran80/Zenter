@@ -15,7 +15,8 @@ class Logincheck extends Authenticatable
         'username',
         'email',
         'password',
-        'mobile_no'
+        'mobile_no',
+        'role'
     ];
 
    
