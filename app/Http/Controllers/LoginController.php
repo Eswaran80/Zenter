@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logincheck;
 use App\Services\Login\LoginInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,17 +37,13 @@ class LoginController extends Controller
             'password'=>'required|min:6'
         ]);
         if($validate->fails()){
-            // return response()->json([
-            //     'status'=>false,
-            //     'error'=>$validate->errors()
-            // ],422);
             return redirect()->route('register.show')->with('error',$validate->errors()->first());
-
         }
         
         $data=$validate->validated();   
         
        $exist=$this->loginInterface->loginstore($data);
+       
        if($exist){
             return redirect()->route('register.show')->with('error','Username already exists');
             // return response()->json(['error'=>'already exist']);
@@ -87,22 +84,22 @@ class LoginController extends Controller
         return redirect()->route('login')->with('error','User does not exist please register first!');
     }
    public function logout(Request $request)
-{
-    Auth::logout();
+    {
+        Auth::logout();
 
-    // Invalidate session
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
+        // Invalidate session
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-    return redirect()->route('login');
-}
+        return redirect()->route('login');
+    }
 
    public function usershow()
 {
-    $data = UserModel::all();
-    $total=UserModel::count();
-    $active=UserModel::where('status',1)->count();
-    $inactive=UserModel::where('status',0)->count();
+    $data = Logincheck::all();
+    $total=Logincheck::count();
+    $active=Logincheck::where('status',1)->count();
+    $inactive=Logincheck::where('status',0)->count();
     return view('users', compact('data','total','active','inactive'));
 }
 

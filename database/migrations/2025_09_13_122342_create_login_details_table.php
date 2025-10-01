@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email');
             $table->biginteger('mobile_no')->nullable();
             $table->string('password');
+            $table->string('role')->nullable()->default('Member');
+           $table->unsignedInteger('status')->default(1);
             $table->timestamps();
         });
     }

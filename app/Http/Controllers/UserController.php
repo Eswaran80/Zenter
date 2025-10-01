@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LoginModel;
+use App\Models\Logincheck;
 use App\Services\User\UserInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\UserModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,17 +19,25 @@ class UserController extends Controller
     public function store(Request $request){
 
         $validated=Validator::make($request->all(),[
-            'name'=>'nullable',
+            'username'=>'nullable',
             'role'=>'nullable',
             'email'=>'nullable',
+            'password'=>'required',
+            'mobile_no'=>'nullable'
         ]);
         $data=$validated->validated();
-        UserModel::create([
-            'user_id'=>Auth::user()->id,
-            'name'=>$data['name'],
+        $data['password']=Hash::make($data['password']);  
+        $userExist=Logincheck::where('username',$data['username'])->exists();
+        if(!$userExist){
+            Logincheck::create([
+            'username'=>$data['username'],
             'role'=>$data['role'],
-            'email'=>$data['email']
+            'email'=>$data['email'],
+            'password'=>$data['password'],
         ]);
-        return redirect()->back();  
+         return redirect()->back(); 
+
+        }
+        return redirect()->back()->with('error','already exists');  
     }
 }

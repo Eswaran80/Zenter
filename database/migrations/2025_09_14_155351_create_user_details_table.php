@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('login_details')->onDelete('cascade');
             $table->string('name');
-            $table->string('role');
+            $table->string('password');
             $table->string('email');
             $table->unsignedInteger('status')->default(1);
             $table->timestamps();
