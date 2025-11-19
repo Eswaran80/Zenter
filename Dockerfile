@@ -1,29 +1,26 @@
-FROM php:8.2-fpm
+FROM php:8.2-cli
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    nginx git curl unzip libpq-dev libzip-dev libpng-dev \
-    && docker-php-ext-install pdo pdo_mysql zip
+RUN apt-get update && apt-get install -y git unzip libzip-dev libpng-dev curl \
+    && docker-php-ext-install pdo_mysql zip
 
+# Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# Set working directory
 WORKDIR /var/www
 
+# Copy project files
 COPY . .
 
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-RUN php artisan config:clear && \
-    php artisan route:clear && \
-    php artisan view:clear
+# Clear caches
+RUN php artisan config:clear && php artisan route:clear && php artisan view:clear
 
-# Remove default nginx site
-RUN rm -f /etc/nginx/sites-enabled/default
-
-# Add our Laravel Nginx config
-COPY nginx.conf /etc/nginx/conf.d/laravel.conf
-
+# Expose Render port
 EXPOSE 10000
 
-# IMPORTANT FOR RENDER: php-fpm in foreground mode
-CMD ["sh", "-c", "php-fpm -R & nginx -g 'daemon off;'"]
+# Start Laravel built-in server
+CMD php artisan serve --host=0.0.0.0 --port=10000
