@@ -11,21 +11,31 @@ RUN a2enmod rewrite
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy application files
+# Copy app files
 COPY . .
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Generate Laravel APP_KEY
+# Generate APP KEY
 RUN php artisan key:generate --force || true
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
+# Fix Laravel public directory issue
+# Move Laravel project OUT of /var/www/html and into /var/www
+RUN rm -rf /var/www/html && mv /var/www /var/www/laravel
+
+# Point Apache DocumentRoot to Laravel public folder
+ENV APACHE_DOCUMENT_ROOT=/var/www/laravel/public
+
+# Update Apache config
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/sites-available/000-default.conf \
+    /etc/apache2/apache2.conf
+
+# Permissions
+RUN chown -R www-data:www-data /var/www/laravel
 
 EXPOSE 80
 
